@@ -1,0 +1,25 @@
+# Arquivos temporários do Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Arquivos de backup
+*.bak
+*.tmp
+*~
+
+# Arquivos de log
+*.log
+
+# Arquivos de configuração local
+.env
+.env.local
+
+# Arquivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Arquivos de sistema
+.DS_Store
