@@ -140,7 +140,7 @@
             </div>
 
             <div class="bg-white p-6 rounded-2xl shadow-lg border border-stone-200">
-                <h3 class="text-2xl font-bold text-center mb-2">Economia Acumulada (Interativo)</h3>
+                <h3 class="text-2xl font-bold text-center mb-2">Economia Acumulada</h3>
                 <p class="text-center text-stone-600 mb-4">Arraste o controle deslizante para ver a economia crescer mês a mês.</p>
                 
                 <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-6">
@@ -198,6 +198,7 @@
             <div class="border-b border-stone-300 mb-6">
                 <nav class="-mb-px flex space-x-4" aria-label="Tabs">
                     <button class="tab-link active" data-tab-target="#tab-modulos">Módulos Incluídos</button>
+                    <button class="tab-link" data-tab-target="#tab-detalhado">Descritivo Detalhado dos Módulos</button>
                     <button class="tab-link" data-tab-target="#tab-cronograma">Cronograma Executivo</button>
                 </nav>
             </div>
@@ -205,7 +206,7 @@
             <div id="tab-modulos" class="tab-panel">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="bg-white p-6 rounded-2xl shadow-lg border border-stone-200">
-                        <h4 class="text-xl font-bold mb-3" style="color: #FF355E;">Core HR Management</h4>
+                        <h4 class="text-xl font-bold mb-3 text-center" style="color: #FF355E;">Core HR Management</h4>
                         <ul class="space-y-2 text-stone-600">
                             <li class="flex items-start"><span class="mr-2" style="color: #FF355E;">✓</span>Gestão de Colaboradores</li>
                             <li class="flex items-start"><span class="mr-2" style="color: #FF355E;">✓</span>Cargos e Salários</li>
@@ -214,7 +215,7 @@
                         </ul>
                     </div>
                     <div class="bg-white p-6 rounded-2xl shadow-lg border border-stone-200">
-                        <h4 class="text-xl font-bold mb-3" style="color: #07A2AD;">Performance & Dev</h4>
+                        <h4 class="text-xl font-bold mb-3 text-center" style="color: #07A2AD;">Performance & Dev</h4>
                         <ul class="space-y-2 text-stone-600">
                             <li class="flex items-start"><span class="mr-2" style="color: #07A2AD;">✓</span>Avaliação de Desempenho (360º)</li>
                             <li class="flex items-start"><span class="mr-2" style="color: #07A2AD;">✓</span>Gestão de Competências</li>
@@ -223,13 +224,244 @@
                         </ul>
                     </div>
                     <div class="bg-white p-6 rounded-2xl shadow-lg border border-stone-200">
-                        <h4 class="text-xl font-bold mb-3" style="color: #FFB940;">Recruitment & Analytics</h4>
+                        <h4 class="text-xl font-bold mb-3 text-center" style="color: #FFB940;">Recruitment & Analytics</h4>
                         <ul class="space-y-2 text-stone-600">
                             <li class="flex items-start"><span class="mr-2" style="color: #FFB940;">✓</span>Triagem de currículos por (IA)</li>
                             <li class="flex items-start"><span class="mr-2" style="color: #FFB940;">✓</span>Fluxos de Aprovação</li>
                             <li class="flex items-start"><span class="mr-2" style="color: #FFB940;">✓</span>Analytics Avançados (SQL)</li>
                             <li class="flex items-start"><span class="mr-2" style="color: #FFB940;">✓</span>Integração com 25+ portais</li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tab-detalhado" class="tab-panel hidden">
+                <div class="space-y-8">
+                    <!-- Core HR Management -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-stone-200">
+                        <h3 class="text-2xl font-bold mb-6 text-center" style="color: #FF355E;">Core HR Management</h3>
+                        <div class="prose max-w-none">
+                            <p class="text-lg text-stone-700 mb-6">
+                                <strong>Tudo o que é preciso para otimizar a sua gestão administrativa de RH/DP:</strong> funcionalidades essenciais ou avançadas, para agilizar processos, automatizar fluxos, aproveitar dados e ir além. Escolha a Base Factorial e combine soluções para DP e/ou RH!
+                            </p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-4">
+                                    <div class="border-l-4 pl-4" style="border-color: #FF355E;">
+                                        <h4 class="font-semibold text-stone-800">Entidade legal múltipla</h4>
+                                        <p class="text-stone-600 text-sm">Diferencie as pessoas jurídicas, que compõem sua empresa e adicione características específicas, se necessário</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FF355E;">
+                                        <h4 class="font-semibold text-stone-800">Contratos</h4>
+                                        <p class="text-stone-600 text-sm">Centralize e organize as informações legais de cada um dos seus colaboradores.</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FF355E;">
+                                        <h4 class="font-semibold text-stone-800">Automação de fluxos de trabalho</h4>
+                                        <p class="text-stone-600 text-sm">Crie um sistema de automatização para RH, com todos os dados que já estão armazenados na Factorial. Fluxos personalizados e automáticos, com apenas um clique.</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FF355E;">
+                                        <h4 class="font-semibold text-stone-800">Catálogo de cargos e funções</h4>
+                                        <p class="text-stone-600 text-sm">Centralize todas as informações relacionadas com os tipos de cargos e a faixas salariais dentro da sua empresa.</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FF355E;">
+                                        <h4 class="font-semibold text-stone-800">Gestão de tarefas</h4>
+                                        <p class="text-stone-600 text-sm">Crie e atribua tarefas aos seus colaboradores e/ou equipes.</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FF355E;">
+                                        <h4 class="font-semibold text-stone-800">Notificações personalizadas</h4>
+                                        <p class="text-stone-600 text-sm">Crie notificações automatizadas para as suas equipes e outros departamentos, com base em critérios pré-definidos.</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FF355E;">
+                                        <h4 class="font-semibold text-stone-800">Permissões personalizadas</h4>
+                                        <p class="text-stone-600 text-sm">Defina as atribuições e ações que cada funcionário pode realizar dentro da Factorial.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-4">
+                                    <div class="border-l-4 pl-4" style="border-color: #FF355E;">
+                                        <h4 class="font-semibold text-stone-800">Gestão de documentos e contratos</h4>
+                                        <p class="text-stone-600 text-sm">Organize e centralize todos os documentos e contratos de seus colaboradores na nuvem, de forma inteligente.</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FF355E;">
+                                        <h4 class="font-semibold text-stone-800">Preenchimento automático de documentos</h4>
+                                        <p class="text-stone-600 text-sm">Obtenha o preenchimento automático com base nos dados do colaborador armazenados na Factorial.</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FF355E;">
+                                        <h4 class="font-semibold text-stone-800">Assinatura eletrônica legal</h4>
+                                        <p class="text-stone-600 text-sm">Assine e acompanhe online os documentos, via app ou web, com validade jurídica.</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FF355E;">
+                                        <h4 class="font-semibold text-stone-800">Organograma atualizado em tempo real</h4>
+                                        <p class="text-stone-600 text-sm">Visualize de forma clara a estrutura, hierarquia e organização da sua empresa.</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FF355E;">
+                                        <h4 class="font-semibold text-stone-800">Admissão e demissão de colaboradores</h4>
+                                        <p class="text-stone-600 text-sm">Defina e atribua tarefas para cada etapa, garantindo todos os documentos, assinaturas e informações necessárias.</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FF355E;">
+                                        <h4 class="font-semibold text-stone-800">Insights financeiros</h4>
+                                        <p class="text-stone-600 text-sm">Controle e compreenda os custos e a evolução da sua empresa.</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FF355E;">
+                                        <h4 class="font-semibold text-stone-800">Relatórios e indicadores de RH personalizáveis</h4>
+                                        <p class="text-stone-600 text-sm">Crie e baixe relatórios, para compilar indicadores que te auxiliem no dia a dia.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Performance & Dev -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-stone-200">
+                        <h3 class="text-2xl font-bold mb-6 text-center" style="color: #07A2AD;">Performance & Development</h3>
+                        <div class="prose max-w-none">
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div>
+                                    <h4 class="text-xl font-semibold mb-4" style="color: #07A2AD;">Avaliação de Desempenho</h4>
+                                    <p class="text-stone-700 mb-4">Administre diferentes tipos de avaliações e tenha informações centralizadas para tomar as melhores decisões.</p>
+                                    
+                                    <div class="space-y-3">
+                                        <div class="flex items-start">
+                                            <span class="mr-2 mt-1" style="color: #07A2AD;">✓</span>
+                                            <span class="text-stone-600">Avaliações de desempenho 90º, 180º, 360º e autoavaliações</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <span class="mr-2 mt-1" style="color: #07A2AD;">✓</span>
+                                            <span class="text-stone-600">Análise de avaliações de desempenho com IA</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <span class="mr-2 mt-1" style="color: #07A2AD;">✓</span>
+                                            <span class="text-stone-600">Monitoramento de competência</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <span class="mr-2 mt-1" style="color: #07A2AD;">✓</span>
+                                            <span class="text-stone-600">Matriz 9 box</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <span class="mr-2 mt-1" style="color: #07A2AD;">✓</span>
+                                            <span class="text-stone-600">Registros de 1:1</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="text-xl font-semibold mb-4" style="color: #07A2AD;">Pesquisas e Feedback</h4>
+                                    <p class="text-stone-700 mb-4">Crie e personalize pesquisas para colher feedback dos seus colaboradores.</p>
+                                    
+                                    <div class="space-y-3">
+                                        <div class="flex items-start">
+                                            <span class="mr-2 mt-1" style="color: #07A2AD;">✓</span>
+                                            <span class="text-stone-600">Pesquisas ilimitadas</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <span class="mr-2 mt-1" style="color: #07A2AD;">✓</span>
+                                            <span class="text-stone-600">Modelo de perguntas para pesquisas</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <span class="mr-2 mt-1" style="color: #07A2AD;">✓</span>
+                                            <span class="text-stone-600">Escalas de respostas personalizadas</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <span class="mr-2 mt-1" style="color: #07A2AD;">✓</span>
+                                            <span class="text-stone-600">eNPS (Net Promoter Score)</span>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <span class="mr-2 mt-1" style="color: #07A2AD;">✓</span>
+                                            <span class="text-stone-600">Análise do eNPS</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recruitment & Analytics -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-stone-200">
+                        <h3 class="text-2xl font-bold mb-6 text-center" style="color: #FFB940;">Recruitment & Analytics</h3>
+                        <div class="prose max-w-none">
+                            <p class="text-lg text-stone-700 mb-6">
+                                <strong>Encontre os candidatos mais qualificados e contrate os melhores talentos sem perder tempo.</strong> Sistema completo de recrutamento com IA e integrações avançadas.
+                            </p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-4">
+                                    <div class="border-l-4 pl-4" style="border-color: #FFB940;">
+                                        <h4 class="font-semibold text-stone-800">Formulários de candidatura personalizados</h4>
+                                        <p class="text-stone-600 text-sm">Escolha as perguntas e informações que devem constar na vaga de emprego</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FFB940;">
+                                        <h4 class="font-semibold text-stone-800">Personalização das fases de contratação</h4>
+                                        <p class="text-stone-600 text-sm">Adapte o processos de contratação conforme a cultura da sua empresa</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FFB940;">
+                                        <h4 class="font-semibold text-stone-800">Publicação de vagas em portais</h4>
+                                        <p class="text-stone-600 text-sm">Utilize as integrações com a JOIN e compartilhe as vagas de emprego em diversas plataformas</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FFB940;">
+                                        <h4 class="font-semibold text-stone-800">Integração com LinkedIn</h4>
+                                        <p class="text-stone-600 text-sm">Publique vagas no LinkedIn diretamente da Factorial e importe perfis existentes</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FFB940;">
+                                        <h4 class="font-semibold text-stone-800">Conversa por WhatsApp</h4>
+                                        <p class="text-stone-600 text-sm">Abra uma conversa com candidatos através de um link rápido para o WhatsApp</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FFB940;">
+                                        <h4 class="font-semibold text-stone-800">Etiquetas em candidatos</h4>
+                                        <p class="text-stone-600 text-sm">Marque seus candidatos de acordo com os critérios que você deseja para facilitar a gestão</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-4">
+                                    <div class="border-l-4 pl-4" style="border-color: #FFB940;">
+                                        <h4 class="font-semibold text-stone-800">Destaque de candidatos com IA</h4>
+                                        <p class="text-stone-600 text-sm">Tenha a ajudinha da nossa IA para agilizar as fases de triagem e destacar os melhores candidatos</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FFB940;">
+                                        <h4 class="font-semibold text-stone-800">Carta de oferta com assinatura eletrônica</h4>
+                                        <p class="text-stone-600 text-sm">Permita que candidatos assinem a carta oferta utilizando um sistema de assinatura eletrônica</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FFB940;">
+                                        <h4 class="font-semibold text-stone-800">Agendamento de entrevistas</h4>
+                                        <p class="text-stone-600 text-sm">Conecte os calendários internos para enviar convites de entrevista aos seus candidatos</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FFB940;">
+                                        <h4 class="font-semibold text-stone-800">Programe mensagens e e-mails</h4>
+                                        <p class="text-stone-600 text-sm">Facilite a resposta aos candidatos de forma massiva ou individual, usando modelos programados</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FFB940;">
+                                        <h4 class="font-semibold text-stone-800">Requisição de vagas</h4>
+                                        <p class="text-stone-600 text-sm">Crie um fluxo de aprovação para solicitações de novas vagas na empresa</p>
+                                    </div>
+                                    
+                                    <div class="border-l-4 pl-4" style="border-color: #FFB940;">
+                                        <h4 class="font-semibold text-stone-800">Analytics Avançados (SQL)</h4>
+                                        <p class="text-stone-600 text-sm">Crie relatórios mais complexos utilizando linguagem de programação mais avançada</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -326,8 +558,18 @@
                     factCustoMensal = data.factorial.porVida * data.vidas.final + data.factorial.fixo;
                 }
                 
+                // Totvs sempre cobra mensalidade
                 cumulativeTotvs.push(cumulativeTotvs[i-1] + data.totvs.mensal);
-                cumulativeFactorial.push(cumulativeFactorial[i-1] + factCustoMensal);
+                
+                // Factorial só cobra mensalidade a partir do Mês 2
+                if (i === 1) {
+                    // Mês 1: só implementação (sem mensalidade)
+                    cumulativeFactorial.push(cumulativeFactorial[i-1]);
+                } else {
+                    // Mês 2 em diante: implementação + mensalidade
+                    cumulativeFactorial.push(cumulativeFactorial[i-1] + factCustoMensal);
+                }
+                
                 cumulativeSavings.push(cumulativeTotvs[i] - cumulativeFactorial[i]);
             }
             
