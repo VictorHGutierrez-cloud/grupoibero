@@ -199,6 +199,7 @@
                 <nav class="-mb-px flex space-x-4" aria-label="Tabs">
                     <button class="tab-link active" data-tab-target="#tab-modulos">Módulos Incluídos</button>
                     <button class="tab-link" data-tab-target="#tab-detalhado">Descritivo Detalhado dos Módulos</button>
+                    <button class="tab-link" data-tab-target="#tab-pagamentos">Fluxos de Pagamento</button>
                     <button class="tab-link" data-tab-target="#tab-cronograma">Cronograma Executivo</button>
                 </nav>
             </div>
@@ -466,6 +467,180 @@
                 </div>
             </div>
 
+            <div id="tab-pagamentos" class="tab-panel hidden">
+                <div class="space-y-8">
+                    <!-- Estrutura de Cobrança -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-stone-200">
+                        <h3 class="text-2xl font-bold mb-6 text-center" style="color: #FF355E;">Estrutura de Cobrança Factorial</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="text-center p-6 rounded-xl" style="background-color: #f0f9ff; border: 2px solid #FF355E;">
+                                <div class="text-4xl mb-4">💳</div>
+                                <h4 class="text-xl font-bold mb-2" style="color: #FF355E;">Implementação</h4>
+                                <p class="text-3xl font-bold mb-2" style="color: #FF355E;">R$ 12.000</p>
+                                <p class="text-stone-600">Pagamento único no fechamento do contrato</p>
+                            </div>
+                            <div class="text-center p-6 rounded-xl" style="background-color: #f0f9ff; border: 2px solid #07A2AD;">
+                                <div class="text-4xl mb-4">📅</div>
+                                <h4 class="text-xl font-bold mb-2" style="color: #07A2AD;">Primeira Mensalidade</h4>
+                                <p class="text-3xl font-bold mb-2" style="color: #07A2AD;">Mês 2</p>
+                                <p class="text-stone-600">Início da cobrança mensal em novembro</p>
+                            </div>
+                            <div class="text-center p-6 rounded-xl" style="background-color: #f0f9ff; border: 2px solid #FFB940;">
+                                <div class="text-4xl mb-4">🔄</div>
+                                <h4 class="text-xl font-bold mb-2" style="color: #FFB940;">Modelo Escalável</h4>
+                                <p class="text-3xl font-bold mb-2" style="color: #FFB940;">Por Vida</p>
+                                <p class="text-stone-600">Custo ajustado conforme crescimento</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cronograma de Pagamentos -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-stone-200">
+                        <h3 class="text-2xl font-bold mb-6 text-center" style="color: #07A2AD;">Cronograma de Pagamentos</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 rounded-lg" style="background-color: #f0f9ff; border-left: 4px solid #FF355E;">
+                                <div>
+                                    <h4 class="font-semibold text-stone-800">Outubro 2025</h4>
+                                    <p class="text-sm text-stone-600">Fechamento do contrato</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-xl font-bold" style="color: #FF355E;">R$ 12.000</p>
+                                    <p class="text-sm text-stone-600">Implementação única</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-4 rounded-lg" style="background-color: #f0f9ff; border-left: 4px solid #07A2AD;">
+                                <div>
+                                    <h4 class="font-semibold text-stone-800">Novembro 2025</h4>
+                                    <p class="text-sm text-stone-600">Primeira mensalidade</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-xl font-bold" style="color: #07A2AD;">R$ 7.156,50</p>
+                                    <p class="text-sm text-stone-600">550 vidas × R$ 11,83 + R$ 650</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-4 rounded-lg" style="background-color: #f0f9ff; border-left: 4px solid #FFB940;">
+                                <div>
+                                    <h4 class="font-semibold text-stone-800">Dezembro 2025 - Março 2026</h4>
+                                    <p class="text-sm text-stone-600">Mensalidade regular (550 vidas)</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-xl font-bold" style="color: #FFB940;">R$ 7.156,50</p>
+                                    <p class="text-sm text-stone-600">Mensalidade fixa</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-4 rounded-lg" style="background-color: #f0f9ff; border-left: 4px solid #25253D;">
+                                <div>
+                                    <h4 class="font-semibold text-stone-800">Abril 2026 em diante</h4>
+                                    <p class="text-sm text-stone-600">Mensalidade escalada (750 vidas)</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-xl font-bold" style="color: #25253D;">R$ 9.522,50</p>
+                                    <p class="text-sm text-stone-600">750 vidas × R$ 11,83 + R$ 650</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comparativo Visual -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-stone-200">
+                        <h3 class="text-2xl font-bold mb-6 text-center" style="color: #FFB940;">Comparativo de Pagamentos - Primeiros 6 Meses</h3>
+                        <div class="chart-container" style="max-height: 400px;">
+                            <canvas id="paymentFlowChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Vantagens do Modelo -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-stone-200">
+                        <h3 class="text-2xl font-bold mb-6 text-center" style="color: #25253D;">Vantagens do Modelo Factorial</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <span class="mr-3 mt-1" style="color: #FF355E;">✓</span>
+                                    <div>
+                                        <h4 class="font-semibold text-stone-800">Sem Taxa de Setup</h4>
+                                        <p class="text-stone-600 text-sm">Implementação inclusa no valor mensal</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="mr-3 mt-1" style="color: #07A2AD;">✓</span>
+                                    <div>
+                                        <h4 class="font-semibold text-stone-800">Escalabilidade Automática</h4>
+                                        <p class="text-stone-600 text-sm">Custo ajustado conforme crescimento da empresa</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="mr-3 mt-1" style="color: #FFB940;">✓</span>
+                                    <div>
+                                        <h4 class="font-semibold text-stone-800">Proteção de Preço</h4>
+                                        <p class="text-stone-600 text-sm">Valor congelado por 24 meses (apenas IPCA)</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <span class="mr-3 mt-1" style="color: #25253D;">✓</span>
+                                    <div>
+                                        <h4 class="font-semibold text-stone-800">Flexibilidade de Pagamento</h4>
+                                        <p class="text-stone-600 text-sm">Boleto, cartão, PIX e transferência</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="mr-3 mt-1" style="color: #FF355E;">✓</span>
+                                    <div>
+                                        <h4 class="font-semibold text-stone-800">Suporte Multi-Entidade</h4>
+                                        <p class="text-stone-600 text-sm">Faturamento consolidado para múltiplas empresas</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="mr-3 mt-1" style="color: #07A2AD;">✓</span>
+                                    <div>
+                                        <h4 class="font-semibold text-stone-800">Transparência Total</h4>
+                                        <p class="text-stone-600 text-sm">Sem custos ocultos ou surpresas</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detalhes Técnicos -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg border border-stone-200">
+                        <h3 class="text-2xl font-bold mb-6 text-center" style="color: #FF355E;">Detalhes Técnicos de Cobrança</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="text-center p-6 rounded-xl bg-stone-50">
+                                <h4 class="text-lg font-semibold mb-3 text-stone-800">Formas de Pagamento</h4>
+                                <ul class="space-y-2 text-stone-600">
+                                    <li>• Boleto bancário</li>
+                                    <li>• Cartão de crédito</li>
+                                    <li>• PIX</li>
+                                    <li>• Transferência bancária</li>
+                                </ul>
+                            </div>
+                            <div class="text-center p-6 rounded-xl bg-stone-50">
+                                <h4 class="text-lg font-semibold mb-3 text-stone-800">Processo de Faturamento</h4>
+                                <ul class="space-y-2 text-stone-600">
+                                    <li>• Faturamento mensal</li>
+                                    <li>• Vencimento: 10 dias</li>
+                                    <li>• Notificação por email</li>
+                                    <li>• Portal de cobrança</li>
+                                </ul>
+                            </div>
+                            <div class="text-center p-6 rounded-xl bg-stone-50">
+                                <h4 class="text-lg font-semibold mb-3 text-stone-800">Suporte Multi-Entidade</h4>
+                                <ul class="space-y-2 text-stone-600">
+                                    <li>• Faturamento consolidado</li>
+                                    <li>• Relatórios por empresa</li>
+                                    <li>• Gestão centralizada</li>
+                                    <li>• Contratos separados</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div id="tab-cronograma" class="tab-panel hidden">
                 <div class="bg-white p-8 rounded-2xl shadow-lg border border-stone-200">
                     <ol class="relative border-l border-stone-300">
@@ -567,7 +742,7 @@
                     cumulativeFactorial.push(cumulativeFactorial[i-1]);
                 } else {
                     // Mês 2 em diante: implementação + mensalidade
-                    cumulativeFactorial.push(cumulativeFactorial[i-1] + factCustoMensal);
+                cumulativeFactorial.push(cumulativeFactorial[i-1] + factCustoMensal);
                 }
                 
                 cumulativeSavings.push(cumulativeTotvs[i] - cumulativeFactorial[i]);
@@ -744,6 +919,52 @@
             }, observerOptions);
 
             sections.forEach(section => observer.observe(section));
+
+            // Payment Flow Chart
+            const paymentFlowCtx = document.getElementById('paymentFlowChart');
+            if (paymentFlowCtx) {
+                new Chart(paymentFlowCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Outubro', 'Novembro', 'Dezembro', 'Janeiro', 'Fevereiro', 'Março'],
+                        datasets: [
+                            {
+                                label: 'Totvs',
+                                data: [73000, 99000, 125000, 151000, 177000, 203000],
+                                backgroundColor: '#25253D',
+                                borderColor: '#25253D',
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Factorial RH',
+                                data: [12000, 19156.50, 26313, 33469.50, 40626, 47782.50],
+                                backgroundColor: '#FF355E',
+                                borderColor: '#FF355E',
+                                borderWidth: 1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: (context) => `${context.dataset.label}: ${currencyFormat(context.parsed.y)}`
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: (value) => currencyFormat(value)
+                                }
+                            }
+                        }
+                    }
+                });
+            }
         });
     </script>
 </body>
