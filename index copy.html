@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -114,11 +114,11 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="bg-white p-6 rounded-2xl shadow-lg border border-stone-200 text-center">
                     <h3 class="text-base font-medium text-stone-500 mb-2">Economia Total em 24 Meses</h3>
-                    <p class="text-5xl font-bold" style="color: #FF355E;">R$ 672.920,00</p>
+                    <p class="text-5xl font-bold" style="color: #FF355E;">R$ 439.924</p>
                 </div>
                 <div class="bg-white p-6 rounded-2xl shadow-lg border border-stone-200 text-center">
                     <h3 class="text-base font-medium text-stone-500 mb-2">Redução de Custo Total</h3>
-                    <p class="text-5xl font-bold" style="color: #07A2AD;">74,95%</p>
+                    <p class="text-5xl font-bold" style="color: #07A2AD;">65,56%</p>
                 </div>
                 <div class="bg-white p-6 rounded-2xl shadow-lg border border-stone-200 text-center">
                     <h3 class="text-base font-medium text-stone-500 mb-2">Redução na Implementação</h3>
@@ -148,7 +148,7 @@
                     <input id="monthSlider" type="range" min="1" max="24" value="24" class="w-full max-w-lg cursor-pointer">
                     <div class="flex-shrink-0 rounded-lg p-4 text-center" style="background-color: #f0f9ff; border: 1px solid #07A2AD;">
                         <span class="text-lg font-medium" style="color: #07A2AD;">Economia no <strong id="monthLabel">Mês 24</strong></span>
-                        <p class="text-3xl font-bold" style="color: #FF355E;" id="savingsLabel">R$ 672.920,00</p>
+                        <p class="text-3xl font-bold" style="color: #FF355E;" id="savingsLabel">R$ 439.924,00</p>
                     </div>
                 </div>
 
@@ -516,19 +516,30 @@
                                     <p class="text-sm text-stone-600">Primeira mensalidade</p>
                                 </div>
                                 <div class="text-right">
-                                    <p class="text-xl font-bold" style="color: #07A2AD;">R$ 8.872,50</p>
-                                    <p class="text-sm text-stone-600">750 vidas × R$ 11,83</p>
+                                    <p class="text-xl font-bold" style="color: #07A2AD;">R$ 7.156,50</p>
+                                    <p class="text-sm text-stone-600">550 vidas × R$ 11,83 + R$ 650</p>
                                 </div>
                             </div>
                             
                             <div class="flex items-center justify-between p-4 rounded-lg" style="background-color: #f0f9ff; border-left: 4px solid #FFB940;">
                                 <div>
-                                    <h4 class="font-semibold text-stone-800">Dezembro 2025 em diante</h4>
-                                    <p class="text-sm text-stone-600">Mensalidade regular (750 vidas)</p>
+                                    <h4 class="font-semibold text-stone-800">Dezembro 2025 - Março 2026</h4>
+                                    <p class="text-sm text-stone-600">Mensalidade regular (550 vidas)</p>
                                 </div>
                                 <div class="text-right">
-                                    <p class="text-xl font-bold" style="color: #FFB940;">R$ 8.872,50</p>
-                                    <p class="text-sm text-stone-600">750 vidas × R$ 11,83</p>
+                                    <p class="text-xl font-bold" style="color: #FFB940;">R$ 7.156,50</p>
+                                    <p class="text-sm text-stone-600">Mensalidade fixa</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between p-4 rounded-lg" style="background-color: #f0f9ff; border-left: 4px solid #25253D;">
+                                <div>
+                                    <h4 class="font-semibold text-stone-800">Abril 2026 em diante</h4>
+                                    <p class="text-sm text-stone-600">Mensalidade escalada (750 vidas)</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="text-xl font-bold" style="color: #25253D;">R$ 9.522,50</p>
+                                    <p class="text-sm text-stone-600">750 vidas × R$ 11,83 + R$ 650</p>
                                 </div>
                             </div>
                         </div>
@@ -704,9 +715,9 @@
             const currencyFormat = (val) => val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
             
             const data = {
-                totvs: { impl: 47000, mensal: 35452.5 },
-                factorial: { impl: 12000, fixo: 0, porVida: 11.83 },
-                vidas: { inicial: 750, final: 750, mesCrescimento: 1 },
+                totvs: { impl: 47000, mensal: 26000 },
+                factorial: { impl: 12000, fixo: 650, porVida: 11.83 },
+                vidas: { inicial: 550, final: 750, mesCrescimento: 5 }
             };
             
             const cumulativeLabels = ['Mês 0'];
@@ -920,14 +931,14 @@
                         datasets: [
                             {
                                 label: 'Totvs',
-                                data: [47000, 82452.5, 117905, 153357.5, 188810, 224262.5],
+                                data: [73000, 99000, 125000, 151000, 177000, 203000],
                                 backgroundColor: '#25253D',
                                 borderColor: '#25253D',
                                 borderWidth: 1
                             },
                             {
                                 label: 'Factorial RH',
-                                data: [12000, 20872.5, 29745, 38617.5, 47490, 56362.5],
+                                data: [12000, 19156.50, 26313, 33469.50, 40626, 47782.50],
                                 backgroundColor: '#FF355E',
                                 borderColor: '#FF355E',
                                 borderWidth: 1
