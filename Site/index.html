@@ -1,370 +1,507 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ibero Equipamentos - Soluções Empresariais</title>
+    <title>Proposta Interativa | Factorial RH & Grupo Ibero</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: A estrutura de SPA temática foi escolhida para transformar a proposta de um documento linear em um painel de decisão executiva. O fluxo guia o usuário da proposta de valor central (economia) para a análise de dados (comparativo interativo), depois para a transparência (detalhes de custos) e, finalmente, para a prova (escopo e cronograma). A navegação por abas e o controle deslizante interativo de custos aumentam o engajamento e a clareza, tornando a economia de 24 meses tangível. -->
+    <!-- Visualization & Content Choices: Resumo (Grandes Números) -> Informar -> Cartões de Estatística HTML/Tailwind -> Impacto imediato. Custo Total (Comparativo) -> Comparar -> Gráfico de Barras (Chart.js) -> Contraste visual claro. Custo Acumulado (Comparativo) -> Mostrar Mudança -> Gráfico de Linhas (Chart.js) + Slider JS -> Interação principal, mostra economia ao longo do tempo. Custo Factorial (Detalhes) -> Organizar -> Gráfico de Rosca (Chart.js) -> Transparência na composição do preço. Escopo/Cronograma -> Organizar -> Abas HTML/Tailwind/JS -> Consolida informações densas. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
+            font-family: 'Inter', sans-serif;
         }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #ffd700;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23667eea" width="1200" height="600"/><circle fill="%23764ba2" cx="200" cy="150" r="100"/><circle fill="%23ffd700" cx="1000" cy="450" r="80"/></svg>');
-            background-size: cover;
-            background-position: center;
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: white;
-        }
-
-        .hero-content h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
             margin-left: auto;
             margin-right: auto;
+            height: 45vh;
+            max-height: 450px;
         }
-
-        .btn {
-            display: inline-block;
-            background: #ffd700;
-            color: #333;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        /* Sections */
-        section {
-            padding: 4rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
-        }
-
-        /* Services */
-        .services {
-            background: white;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        /* About */
-        .about {
-            background: #f8f9fa;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        /* Contact */
-        .contact {
-            background: white;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .contact-info {
-            background: #667eea;
-            color: white;
-            padding: 2rem;
-            border-radius: 10px;
-        }
-
-        .contact-form {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        .form-group input,
-        .form-group textarea {
+        .chart-container-sm {
+            position: relative;
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 40vh;
+            max-height: 350px;
         }
-
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
-        }
-
-        /* Footer */
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+            .chart-container {
+                height: 50vh;
+                max-height: 400px;
             }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .about-content,
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
+        }
+        .nav-link {
+            @apply px-3 py-2 rounded-md text-sm font-medium text-stone-600 hover:bg-stone-200 hover:text-stone-900 transition-colors;
+        }
+        .nav-link.active {
+            @apply text-white hover:text-white;
+            background-color: #FF355E;
+        }
+        .nav-link.active:hover {
+            background-color: #e02e52;
+        }
+        .tab-link {
+            @apply px-4 py-2 text-lg font-medium rounded-t-lg transition-colors duration-200;
+        }
+        .tab-link.active {
+            @apply border-b-4 text-white;
+            border-color: #FF355E;
+            color: #FF355E;
+        }
+        .tab-link:not(.active) {
+            @apply text-stone-500 hover:text-stone-800;
         }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <nav class="container">
-            <div class="logo">Ibero Equipamentos</div>
-            <ul class="nav-links">
-                <li><a href="#home">Início</a></li>
-                <li><a href="#services">Serviços</a></li>
-                <li><a href="#about">Sobre</a></li>
-                <li><a href="#contact">Contato</a></li>
-            </ul>
+<body class="bg-stone-50 text-stone-800">
+
+    <header class="bg-stone-100/90 backdrop-blur-sm shadow-sm sticky top-0 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <h1 class="text-xl font-bold" style="color: #FF355E;">Factorial <span class="text-stone-600">& Grupo Ibero</span></h1>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:space-x-4 sm:items-center">
+                    <a href="#resumo" class="nav-link active" data-nav-link>Resumo</a>
+                    <a href="#comparativo" class="nav-link" data-nav-link>Comparativo</a>
+                    <a href="#custos" class="nav-link" data-nav-link>Custos</a>
+                    <a href="#escopo" class="nav-link" data-nav-link>Escopo & Cronograma</a>
+                    <a href="#proximos-passos" class="nav-link" data-nav-link>Próximos Passos</a>
+                </div>
+                <div class="sm:hidden flex items-center">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-stone-500 hover:text-stone-800 hover:bg-stone-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500">
+                        <span class="sr-only">Abrir menu principal</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </nav>
+        <div class="sm:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#resumo" class="block nav-link active" data-nav-link>Resumo</a>
+                <a href="#comparativo" class="block nav-link" data-nav-link>Comparativo</a>
+                <a href="#custos" class="block nav-link" data-nav-link>Custos</a>
+                <a href="#escopo" class="block nav-link" data-nav-link>Escopo & Cronograma</a>
+                <a href="#proximos-passos" class="block nav-link" data-nav-link>Próximos Passos</a>
+            </div>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Soluções Empresariais de Excelência</h1>
-                <p>Transformamos desafios empresariais em oportunidades de crescimento através de tecnologia e inovação.</p>
-                <a href="#contact" class="btn">Entre em Contato</a>
-            </div>
-        </div>
-    </section>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title">Nossos Serviços</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🏢</div>
-                    <h3>Consultoria Empresarial</h3>
-                    <p>Orientamos sua empresa com estratégias personalizadas para maximizar resultados e eficiência operacional.</p>
+        <section id="resumo" class="scroll-mt-20 mb-16">
+            <h2 class="text-3xl font-bold tracking-tight text-stone-900 mb-4">Resumo Executivo e Impacto Financeiro</h2>
+            <p class="text-lg text-stone-600 mb-8">
+                Esta é uma proposta para a migração estratégica do sistema de RH da Ibero Equipamentos para a Factorial. A análise abaixo demonstra o impacto financeiro imediato e de longo prazo, resultando em modernização tecnológica e economia substancial.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-stone-200 text-center">
+                    <h3 class="text-base font-medium text-stone-500 mb-2">Economia Total em 24 Meses</h3>
+                    <p class="text-5xl font-bold" style="color: #FF355E;">R$ 439.924</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">⚙️</div>
-                    <h3>Implementação de Sistemas</h3>
-                    <p>Implementamos soluções tecnológicas robustas que integram todos os processos da sua organização.</p>
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-stone-200 text-center">
+                    <h3 class="text-base font-medium text-stone-500 mb-2">Redução de Custo Total</h3>
+                    <p class="text-5xl font-bold" style="color: #07A2AD;">65,56%</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">📊</div>
-                    <h3>Análise de Dados</h3>
-                    <p>Transformamos dados em insights valiosos para tomada de decisões estratégicas e inteligentes.</p>
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-stone-200 text-center">
+                    <h3 class="text-base font-medium text-stone-500 mb-2">Redução na Implementação</h3>
+                    <p class="text-5xl font-bold" style="color: #FFB940;">74%</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">Sobre a Ibero Equipamentos</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>A Ibero Equipamentos é uma empresa especializada em soluções empresariais inovadoras. Com anos de experiência no mercado, oferecemos serviços de consultoria, implementação de sistemas e análise de dados para empresas de todos os portes.</p>
-                    <p>Nossa missão é transformar desafios empresariais em oportunidades de crescimento, utilizando tecnologia de ponta e metodologias comprovadas para garantir o sucesso dos nossos clientes.</p>
+        <section id="comparativo" class="scroll-mt-20 mb-16">
+            <h2 class="text-3xl font-bold tracking-tight text-stone-900 mb-4">Análise Comparativa de Investimento</h2>
+            <p class="text-lg text-stone-600 mb-8">
+                A diferença de investimento é clara. A Factorial oferece um modelo escalável que se ajusta ao crescimento da Ibero (de 550 para 750 colaboradores), enquanto a solução atual mantém um custo fixo elevado e independente do número de usuários.
+            </p>
+
+            <div class="bg-white p-6 rounded-2xl shadow-lg border border-stone-200 mb-12">
+                <h3 class="text-2xl font-bold text-center mb-6">Custo Total Projetado (24 Meses)</h3>
+                <div class="chart-container" style="max-height: 350px;">
+                    <canvas id="totalCostChart"></canvas>
                 </div>
-                <div class="about-image">
-                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem;">
-                        Imagem da Empresa
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-lg border border-stone-200">
+                <h3 class="text-2xl font-bold text-center mb-2">Economia Acumulada (Interativo)</h3>
+                <p class="text-center text-stone-600 mb-4">Arraste o controle deslizante para ver a economia crescer mês a mês.</p>
+                
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6 mb-6">
+                    <input id="monthSlider" type="range" min="1" max="24" value="24" class="w-full max-w-lg cursor-pointer">
+                    <div class="flex-shrink-0 rounded-lg p-4 text-center" style="background-color: #f0f9ff; border: 1px solid #07A2AD;">
+                        <span class="text-lg font-medium" style="color: #07A2AD;">Economia no <strong id="monthLabel">Mês 24</strong></span>
+                        <p class="text-3xl font-bold" style="color: #FF355E;" id="savingsLabel">R$ 439.924,00</p>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="cumulativeCostChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="custos" class="scroll-mt-20 mb-16">
+            <h2 class="text-3xl font-bold tracking-tight text-stone-900 mb-4">Estrutura de Custos da Factorial</h2>
+            <p class="text-lg text-stone-600 mb-8">
+                Nossa precificação é transparente. Ela se divide em módulos flexíveis (cobrados por vida) e módulos fixos, garantindo que você pague apenas pelo que precisa. O desconto de 35% é aplicado a todos os módulos flexíveis e congelado por 24 meses.
+            </p>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 bg-white p-6 rounded-2xl shadow-lg border border-stone-200">
+                    <h3 class="text-2xl font-bold text-center mb-6">Composição do Custo Flexível (Pré-Desconto)</h3>
+                    <div class="chart-container-sm">
+                        <canvas id="priceBreakdownChart"></canvas>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-stone-200">
+                        <h3 class="text-lg font-medium text-stone-500 mb-2">Custo Fixo Mensal</h3>
+                        <p class="text-3xl font-bold text-stone-800">R$ 650,00</p>
+                        <p class="text-sm text-stone-600">(Módulo de Recrutamento e Seleção)</p>
+                    </div>
+                    <div class="text-white p-6 rounded-2xl shadow-lg" style="background-color: #FF355E;">
+                        <h3 class="text-lg font-medium mb-2" style="color: #f0f9ff;">Custo Final (pós-Desconto 35%)</h3>
+                        <p class="text-4xl font-bold">R$ 11,83</p>
+                        <p class="text-lg font-medium" style="color: #f0f9ff;">/ por vida / mês</p>
+                    </div>
+                     <div class="bg-white p-6 rounded-2xl shadow-lg border border-stone-200">
+                        <h3 class="text-lg font-medium text-stone-500 mb-2">Proteção de Preço</h3>
+                        <p class="text-xl font-bold text-stone-800">Valor congelado por 24 meses</p>
+                        <p class="text-sm text-stone-600">(Proteção contra inflação e reajustes)</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Entre em Contato</h2>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>Informações de Contato</h3>
-                    <p><strong>📧 Email:</strong> contato@iberoequipamentos.com</p>
-                    <p><strong>📞 Telefone:</strong> (11) 9999-9999</p>
-                    <p><strong>📍 Endereço:</strong> São Paulo, SP - Brasil</p>
-                    <p><strong>🕒 Horário:</strong> Segunda a Sexta, 8h às 18h</p>
-                </div>
-                <div class="contact-form">
-                    <h3>Envie sua Mensagem</h3>
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Nome:</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Mensagem:</label>
-                            <textarea id="message" name="message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Enviar Mensagem</button>
-                    </form>
+        <section id="escopo" class="scroll-mt-20 mb-16">
+            <h2 class="text-3xl font-bold tracking-tight text-stone-900 mb-4">Escopo & Cronograma de Implementação</h2>
+            <p class="text-lg text-stone-600 mb-8">
+                Esta proposta inclui um conjunto completo de módulos para modernizar sua gestão de RH, com um cronograma claro para a migração e o go-live.
+            </p>
+            
+            <div class="border-b border-stone-300 mb-6">
+                <nav class="-mb-px flex space-x-4" aria-label="Tabs">
+                    <button class="tab-link active" data-tab-target="#tab-modulos">Módulos Incluídos</button>
+                    <button class="tab-link" data-tab-target="#tab-cronograma">Cronograma Executivo</button>
+                </nav>
+            </div>
+
+            <div id="tab-modulos" class="tab-panel">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-stone-200">
+                        <h4 class="text-xl font-bold mb-3" style="color: #FF355E;">Core HR Management</h4>
+                        <ul class="space-y-2 text-stone-600">
+                            <li class="flex items-start"><span class="mr-2" style="color: #FF355E;">✓</span>Gestão de Colaboradores</li>
+                            <li class="flex items-start"><span class="mr-2" style="color: #FF355E;">✓</span>Estrutura Organizacional</li>
+                            <li class="flex items-start"><span class="mr-2" style="color: #FF355E;">✓</span>Gestão de Documentos</li>
+                            <li class="flex items-start"><span class="mr-2" style="color: #FF355E;">✓</span>Segurança e Privacidade (LGPD)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-stone-200">
+                        <h4 class="text-xl font-bold mb-3" style="color: #07A2AD;">Performance & Dev</h4>
+                        <ul class="space-y-2 text-stone-600">
+                            <li class="flex items-start"><span class="mr-2" style="color: #07A2AD;">✓</span>Avaliação de Desempenho (360º)</li>
+                            <li class="flex items-start"><span class="mr-2" style="color: #07A2AD;">✓</span>Gestão de Competências</li>
+                            <li class="flex items-start"><span class="mr-2" style="color: #07A2AD;">✓</span>OKRs (Objetivos e Resultados)</li>
+                            <li class="flex items-start"><span class="mr-2" style="color: #07A2AD;">✓</span>Treinamentos e Feedback</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-stone-200">
+                        <h4 class="text-xl font-bold mb-3" style="color: #FFB940;">Recruitment & Analytics</h4>
+                        <ul class="space-y-2 text-stone-600">
+                            <li class="flex items-start"><span class="mr-2" style="color: #FFB940;">✓</span>Recrutamento e Seleção (IA)</li>
+                            <li class="flex items-start"><span class="mr-2" style="color: #FFB940;">✓</span>Pesquisas e Feedback (eNPS)</li>
+                            <li class="flex items-start"><span class="mr-2" style="color: #FFB940;">✓</span>Analytics Avançados (SQL)</li>
+                            <li class="flex items-start"><span class="mr-2" style="color: #FFB940;">✓</span>Gestão de Projetos</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Ibero Equipamentos. Todos os direitos reservados.</p>
-        </div>
+            <div id="tab-cronograma" class="tab-panel hidden">
+                <div class="bg-white p-8 rounded-2xl shadow-lg border border-stone-200">
+                    <ol class="relative border-l border-stone-300">
+                        <li class="mb-10 ml-6">
+                            <span class="absolute flex items-center justify-center w-6 h-6 bg-teal-200 rounded-full -left-3 ring-8 ring-white">
+                                <span class="text-teal-700">1</span>
+                            </span>
+                            <h3 class="flex items-center mb-1 text-lg font-semibold text-stone-900">Fechamento do Contrato</h3>
+                            <time class="block mb-2 text-sm font-normal leading-none text-stone-500">07 de Novembro de 2024</time>
+                            <p class="text-base font-normal text-stone-600">Assinatura e pagamento da implementação.</p>
+                        </li>
+                        <li class="mb-10 ml-6">
+                            <span class="absolute flex items-center justify-center w-6 h-6 bg-teal-200 rounded-full -left-3 ring-8 ring-white">
+                                <span class="text-teal-700">2</span>
+                            </span>
+                            <h3 class="mb-1 text-lg font-semibold text-stone-900">Migração Inicial (550 Vidas)</h3>
+                            <time class="block mb-2 text-sm font-normal leading-none text-stone-500">30 de Novembro de 2024</time>
+                            <p class="text-base font-normal text-stone-600">Migração completa dos 550 colaboradores e go-live parcial.</p>
+                        </li>
+                        <li class="mb-10 ml-6">
+                            <span class="absolute flex items-center justify-center w-6 h-6 bg-teal-200 rounded-full -left-3 ring-8 ring-white">
+                                <span class="text-teal-700">3</span>
+                            </span>
+                            <h3 class="mb-1 text-lg font-semibold text-stone-900">Go-live Completo do Sistema</h3>
+                            <time class="block mb-2 text-sm font-normal leading-none text-stone-500">28 de Fevereiro de 2025</time>
+                            <p class="text-base font-normal text-stone-600">Configuração de OKRs e competências finalizada. Sistema 100% operacional.</p>
+                        </li>
+                        <li class="mb-10 ml-6">
+                            <span class="absolute flex items-center justify-center w-6 h-6 bg-teal-200 rounded-full -left-3 ring-8 ring-white">
+                                <span class="text-teal-700">4</span>
+                            </span>
+                            <h3 class="mb-1 text-lg font-semibold text-stone-900">Integração da Zurlo (+200 Vidas)</h3>
+                            <time class="block mb-2 text-sm font-normal leading-none text-stone-500">31 de Março de 2025</time>
+                            <p class="text-base font-normal text-stone-600">Expansão do sistema para 750 colaboradores totais.</p>
+                        </li>
+                        <li class="ml-6">
+                            <span class="absolute flex items-center justify-center w-6 h-6 bg-teal-200 rounded-full -left-3 ring-8 ring-white">
+                                <span class="text-teal-700">5</span>
+                            </span>
+                            <h3 class="mb-1 text-lg font-semibold text-stone-900">Primeiro Ciclo de Avaliação</h3>
+                            <time class="block mb-2 text-sm font-normal leading-none text-stone-500">30 de Junho de 2025</time>
+                            <p class="text-base font-normal text-stone-600">Conclusão do primeiro ciclo de avaliação de desempenho na nova plataforma.</p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="proximos-passos" class="scroll-mt-20">
+            <div class="p-8 rounded-2xl shadow-2xl text-center" style="background-color: #FF355E;">
+                <h2 class="text-3xl font-bold text-white mb-4">Decisão Executiva Requerida</h2>
+                <p class="text-lg mb-6 max-w-3xl mx-auto" style="color: #f0f9ff;">
+                    Para garantir o cronograma de implementação e o desconto especial de 35% com preços congelados, a aprovação é necessária até **07 de Novembro de 2024**.
+                </p>
+                <div class="bg-white p-6 rounded-xl max-w-xl mx-auto">
+                    <h3 class="text-base font-medium text-stone-500 mb-1">Impacto Imediato da Decisão</h3>
+                    <p class="text-3xl font-bold" style="color: #FF355E;">Economia de R$ 439.924</p>
+                    <p class="text-lg text-stone-700">e modernização completa do RH.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-8 mt-12 border-t border-stone-200">
+        <p class="text-sm text-stone-500">Proposta Confidencial | Nível Executivo | Válido por 30 dias</p>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+        document.addEventListener('DOMContentLoaded', () => {
+            const currencyFormat = (val) => val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+            
+            const data = {
+                totvs: { impl: 47000, mensal: 26000 },
+                factorial: { impl: 12000, fixo: 650, porVida: 11.83 },
+                vidas: { inicial: 550, final: 750, mesCrescimento: 5 }
+            };
+            
+            const cumulativeLabels = ['Mês 0'];
+            const cumulativeTotvs = [data.totvs.impl];
+            const cumulativeFactorial = [data.factorial.impl];
+            const cumulativeSavings = [data.totvs.impl - data.factorial.impl];
+            
+            let factCustoMensal = data.factorial.porVida * data.vidas.inicial + data.factorial.fixo;
+            
+            for (let i = 1; i <= 24; i++) {
+                cumulativeLabels.push(`Mês ${i}`);
+                
+                if (i === data.vidas.mesCrescimento) {
+                    factCustoMensal = data.factorial.porVida * data.vidas.final + data.factorial.fixo;
+                }
+                
+                cumulativeTotvs.push(cumulativeTotvs[i-1] + data.totvs.mensal);
+                cumulativeFactorial.push(cumulativeFactorial[i-1] + factCustoMensal);
+                cumulativeSavings.push(cumulativeTotvs[i] - cumulativeFactorial[i]);
+            }
+            
+            const totalCostData = {
+                labels: ['Totvs', 'Factorial RH'],
+                datasets: [{
+                    label: 'Custo Total em 24 Meses',
+                    data: [cumulativeTotvs[24], cumulativeFactorial[24]],
+                    backgroundColor: ['#25253D', '#FF355E'],
+                    borderColor: ['#25253D', '#FF355E'],
+                    borderWidth: 1
+                }]
+            };
+
+            const totalCostCtx = document.getElementById('totalCostChart').getContext('2d');
+            new Chart(totalCostCtx, {
+                type: 'bar',
+                data: totalCostData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => currencyFormat(context.parsed.x)
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: {
+                                callback: (value) => currencyFormat(value)
+                            }
+                        }
+                    }
                 }
             });
-        });
 
-        // Form submission handling
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-            this.reset();
+            const cumulativeCtx = document.getElementById('cumulativeCostChart').getContext('2d');
+            const cumulativeChart = new Chart(cumulativeCtx, {
+                type: 'line',
+                data: {
+                    labels: cumulativeLabels,
+                    datasets: [
+                        {
+                            label: 'Custo Acumulado Totvs',
+                            data: cumulativeTotvs,
+                            borderColor: '#25253D',
+                            backgroundColor: '#25253D33',
+                            fill: true,
+                            tension: 0.1
+                        },
+                        {
+                            label: 'Custo Acumulado Factorial RH',
+                            data: cumulativeFactorial,
+                            borderColor: '#FF355E',
+                            backgroundColor: '#FF355E33',
+                            fill: true,
+                            tension: 0.1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => `${context.dataset.label}: ${currencyFormat(context.parsed.y)}`
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            ticks: {
+                                callback: (value) => currencyFormat(value)
+                            }
+                        }
+                    }
+                }
+            });
+
+            const slider = document.getElementById('monthSlider');
+            const monthLabel = document.getElementById('monthLabel');
+            const savingsLabel = document.getElementById('savingsLabel');
+            
+            slider.addEventListener('input', (e) => {
+                const month = parseInt(e.target.value);
+                monthLabel.textContent = `Mês ${month}`;
+                savingsLabel.textContent = currencyFormat(cumulativeSavings[month]);
+                
+                cumulativeChart.data.labels = cumulativeLabels.slice(0, month + 1);
+                cumulativeChart.data.datasets[0].data = cumulativeTotvs.slice(0, month + 1);
+                cumulativeChart.data.datasets[1].data = cumulativeFactorial.slice(0, month + 1);
+                cumulativeChart.update();
+            });
+
+            const breakdownCtx = document.getElementById('priceBreakdownChart').getContext('2d');
+            new Chart(breakdownCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Base Factorial (R$ 9,00)', 'Pesquisas (R$ 5,00)', 'Desempenho (R$ 4,20)'],
+                    datasets: [{
+                        label: 'Custo por Vida (Pré-Desconto)',
+                        data: [9.00, 5.00, 4.20],
+                        backgroundColor: ['#FF355E', '#07A2AD', '#FFB940'],
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => `${context.label}: ${currencyFormat(context.parsed)}`
+                            }
+                        },
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+
+            const tabLinks = document.querySelectorAll('[data-tab-target]');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+            
+            tabLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    const target = document.querySelector(link.dataset.tabTarget);
+                    
+                    tabPanels.forEach(panel => panel.classList.add('hidden'));
+                    target.classList.remove('hidden');
+                    
+                    tabLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                });
+            });
+
+            const navLinks = document.querySelectorAll('[data-nav-link]');
+            const sections = document.querySelectorAll('section');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                mobileMenuButton.querySelectorAll('svg').forEach(svg => svg.classList.toggle('hidden'));
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if (mobileMenu.classList.contains('hidden') === false) {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenuButton.querySelectorAll('svg').forEach(svg => svg.classList.toggle('hidden'));
+                    }
+                });
+            });
+
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.4 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
         });
     </script>
 </body>
